@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script type="text/javascript">
+    $(function() {
+           $( "#datepicker" ).datepicker();
+      });
+    </script>
+  </head>
+  <body>
+    <h1>Dojo Secrets</h1>
+    <h1>Register</h1>
+    <form action="/register" method="post">
+       {% csrf_token %}
+      First name: <input class="box" type="text" name="first_name"><br>
+      Last name: <input class="box" type="text" name="last_name"><br>
+      E-mail: <input class="box" type="text" name="email"><br>
+      Date of Birth: <input name="dob" type="text" id="datepicker"><br>
+      Password: <input class="box" type="password" name="password"><br>
+      Confirm password: <input class="box" type="password" name="conpass"><br>
+      <input class="box" type="submit" name="register" value="Register"><br>
+    </form>
+    <h1>Login</h1>
+    <form action="/login" method="post">
+      {% csrf_token %}
+      E-mail: <input class="box" type="text" type="text" name="email"><br>
+      Password: <input class="box" type="password" name="password"><br>
+      <input class="box" type="submit" name="login" value="Log In"><br>
+    </form>
+    {% if messages %}
+        {% for message in messages %}
+          <ul>
+              <li>{{message}}</li>
+          </ul>
+        {% endfor %}
+    {% endif%}
+  </body>
+</html>
